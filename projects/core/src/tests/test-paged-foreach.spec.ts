@@ -125,7 +125,7 @@ describe("test paged foreach ", async () => {
         test(x => x.id, e.id);
         test(x => x.categoryName, e.categoryName, e.id);
     });
-    fitAsync("test make sort unique", async () => {
+    itAsync("test make sort unique", async () => {
         let context = new Context();
         let e = context.for(Categories).create();
         var gs = context.for(Categories).gridSettings({ orderBy: p => p.categoryName });
