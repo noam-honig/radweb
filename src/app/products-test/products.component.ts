@@ -30,7 +30,7 @@ export class ProductsComponent implements OnInit {
 
   products = this.context.for(Products).gridSettings({
     allowCRUD: true,
-    columnSettings: p => [p.name, p.archive],
+    columnSettings: p => [p.name, p.availableFrom1,p.availableFrom2],
     allowSelection:true
   });
 

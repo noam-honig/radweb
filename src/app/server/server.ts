@@ -31,7 +31,7 @@ serverInit().then(async (dataSource) => {
         let c = await s.getValidContext(req);
         res.send('hello ' + JSON.stringify(c.user));
     });
-
+ 
     app.use('/*', async (req, res) => {
         console.log(req.path);
         const index = 'dist/my-project/index.html';
