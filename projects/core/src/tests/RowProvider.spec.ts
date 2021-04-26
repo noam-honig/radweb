@@ -101,11 +101,11 @@ describe("grid filter stuff", () => {
   itAsync("test filter works without the get statement", async () => {
     let c = await insertFourRows();
     let ds = c.gridSettings({
-      
-        orderBy: c => new Sort({ column: c.id }),
-        where: c => c.categoryName.isContains('a'),
-        rowsInPage: 2
-      
+
+      orderBy: c => new Sort({ column: c.id }),
+      where: c => c.categoryName.isContains('a'),
+      rowsInPage: 2
+
     });
     await ds.getRecords();
     expect(ds.items.length).toBe(2);
@@ -172,7 +172,7 @@ describe("grid filter stuff", () => {
     expect(ds.selectedRows[0].id.value).toBe(1);
     expect(ds.selectedRows[1].id.value).toBe(3);
     let w = ds.getFilterWithSelectedRows().where;
-    
+
     expect(await c.count(w)).toBe(2);
     expect(await c.count(c => c.id.isIn(1, 3))).toBe(2);
   });
@@ -214,7 +214,7 @@ describe("grid filter stuff", () => {
     expect(ds.selectAllChecked()).toBe(false, 'select all checked');
     expect(ds.selectedRows.length).toBe(3, 'selected rows');
     let w = ds.getFilterWithSelectedRows().where;
-    
+
     expect(await c.count(w)).toBe(3, 'rows in count');
   });
   itAsync("select select row by row when all rows are in view", async () => {
@@ -636,7 +636,7 @@ describe("api test", () => {
   it("can build", () => {
     let ctx = new Context();
     ctx.setDataProvider(new InMemoryDataProvider());
-    
+
     let gs = ctx.for(Categories).gridSettings();
     gs.addArea({
       columnSettings: x => [
@@ -905,7 +905,7 @@ describe("test datetime column", () => {
     x.value = new Date(1976, 11, 16, 8, 55, 31, 65)
     //expect(x.rawValue).toBe('1976-12-16T06:55:31.065Z',"compare to string"); only relevant to il timezone
 
- 
+
     expect(x.value.toISOString()).toBe(new Date(1976, 11, 16, 8, 55, 31, 65).toISOString());
   });
   it("stores well undefined", () => {
@@ -940,12 +940,21 @@ describe("test datetime column", () => {
     //expect(x.value.toDateString()).toBe(new Date('1976-06-16').toDateString());
     //  expect(x.dateValue.getHours()).toBe(0);
   });
-  it("date Storage works", () => {
+  it("date Storage works 1", () => {
     var x = new DateTimeDateStorage();
 
     expect(x.toDb('1976-06-16').toLocaleDateString()).toBe(new Date(1976, 5, 16, 0, 0, 0).toLocaleDateString());
+    expect(x.toDb('1976-06-16').getDate()).toBe(16);
+    let toDb = x.toDb('2021-04-26');
+    if (toDb.getTimezoneOffset() < 0)
+      expect(toDb.toISOString().substr(0, 10)).toBe('2021-04-25');
+    else
+      expect(toDb.toISOString().substr(0, 10)).toBe('2021-04-26');
+
+    //
 
   });
+  
 });
 describe("Test char date storage", () => {
   let x = new CharDateStorage();

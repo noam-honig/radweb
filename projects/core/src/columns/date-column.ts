@@ -12,7 +12,7 @@ export class DateColumn extends Column<Date>{
   get displayValue() {
     if (!this.value)
       return '';
-    return this.value.toLocaleDateString();
+    return this.value.toLocaleDateString(undefined,{timeZone:'UTC'});
   }
   __defaultStorage() {
     return new DateTimeDateStorage();
@@ -28,14 +28,24 @@ export class DateColumn extends Column<Date>{
   static stringToDate(value: string) {
     if (!value || value == '' || value == '0000-00-00')
       return undefined;
-    let r =new Date(Date.parse(value)); 
-    return  new Date(r.valueOf() + r.getTimezoneOffset() * 60000);
+    return new Date(Date.parse(value));
   }
   static dateToString(val: Date): string {
     var d = val as Date;
     if (!d)
       return '';
-    return val.toISOString().split('T')[0];
+    return d.toISOString().substring(0,10);
+    let month = addZeros(d.getUTCMonth() + 1),
+      day = addZeros(d.getUTCDate()),
+      year = d.getUTCFullYear();
+    return [year, month, day].join('-');
+    //
   }
 
+}
+function addZeros(number: number, stringLength: number = 2) {
+  let to = number.toString();
+  while (to.length < stringLength)
+    to = '0' + to;
+  return to;
 }

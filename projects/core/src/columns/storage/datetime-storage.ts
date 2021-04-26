@@ -1,4 +1,3 @@
-import { isDate, isString } from "util";
 import { ColumnStorage } from "../../column-interfaces";
 import { DateTimeColumn } from "../datetime-column";
 export class DateTimeStorage implements ColumnStorage<string>{
@@ -6,7 +5,7 @@ export class DateTimeStorage implements ColumnStorage<string>{
     return DateTimeColumn.stringToDate(val);
   }
   fromDb(val: any): string {
-    if (isString(val))
+    if (typeof val === 'string')
       val = new Date(val);
     var d = val as Date;
     return DateTimeColumn.dateToString(d);
