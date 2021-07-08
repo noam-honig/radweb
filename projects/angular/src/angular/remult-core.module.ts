@@ -80,6 +80,8 @@ export function buildContext(http: HttpClient, _dialog: MatDialog) {
     if (ref.beforeClosed)
       r = await ref.beforeClosed().toPromise();
     else
+
+    //@ts-ignore
       r = await ref.beforeClose().toPromise();
 
 

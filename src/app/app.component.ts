@@ -12,7 +12,7 @@ import { Context } from '@remult/core';
 import { DialogService } from '../../projects/angular/schematics/hello/files/src/app/common/dialog';
 import { RouteHelperService } from '@remult/angular';
 import { JwtSessionService } from '@remult/core';
-import { SignInComponent } from '../../projects/angular/schematics/hello/files/src/app/common/sign-in/sign-in.component';
+
 
 @Component({
   selector: 'app-root',
@@ -31,7 +31,7 @@ export class AppComponent {
 
     public dialogService: DialogService,
     public context: Context) {
-    sessionManager.loadSessionFromCookie();
+    //sessionManager.loadSessionFromCookie();
 
   }
   signInText() {
@@ -41,7 +41,7 @@ export class AppComponent {
   }
   async signIn() {
     if (!this.context.user) {
-      this.dialog.open(SignInComponent);
+   //   this.dialog.open(SignInComponent);
     } else {
       if (await this.dialogService.yesNoQuestion("Would you like to sign out?"))
         this.sessionManager.signout();

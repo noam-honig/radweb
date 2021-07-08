@@ -7,7 +7,7 @@ import * as fs from 'fs';
 import '../app.module';
 import { serverInit } from './server-init';
 import { ServerContext } from '@remult/core';
-import { ServerSignIn } from '../../../projects/angular/schematics/hello/files/src/app/users/server-sign-in';
+
 import { preparePostgresQueueStorage } from '@remult/server-postgres';
 import { Products } from '../products-test/products';
 import * as compression from 'compression';

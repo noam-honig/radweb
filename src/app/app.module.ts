@@ -25,7 +25,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { TestComponent } from './test/test.component';
 import { TestDialogComponent } from './test-dialog/test-dialog.component';
 import { ProductsComponent } from './products-test/products.component';
-import { SignInComponent } from '../../projects/angular/schematics/hello/files/src/app/common/sign-in/sign-in.component';
+//import { SignInComponent } from '../../projects/angular/schematics/hello/files/src/app/common/sign-in/sign-in.component';
 
 
 
@@ -39,8 +39,8 @@ import { SignInComponent } from '../../projects/angular/schematics/hello/files/s
     TestComponent,
     YesNoQuestionComponent,
     InputAreaComponent,
-    TestDialogComponent,
-    SignInComponent
+    TestDialogComponent//,
+  //  SignInComponent
   ],
   providers:[
     DialogService
@@ -62,7 +62,7 @@ import { SignInComponent } from '../../projects/angular/schematics/hello/files/s
     MatIconModule,
     FormsModule,
   ],
-  entryComponents:[YesNoQuestionComponent,InputAreaComponent,TestDialogComponent,SignInComponent],
+  entryComponents:[YesNoQuestionComponent,InputAreaComponent,TestDialogComponent],
   
   bootstrap: [AppComponent]
 })

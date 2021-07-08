@@ -739,9 +739,9 @@ export function createAUniqueSort(orderBy: EntityOrderBy<any>, entity: Entity) {
 }
 export function createAfterFilter(orderBy: EntityOrderBy<any>, lastRow: Entity): EntityWhere<any> {
     let values = new Map<string, any>();
-
+    
     for (const s of extractSort(orderBy(lastRow)).Segments) {
-        values.set(s.column.defs.key, s.column.value);
+        values.set(s.column.defs.key,lastRow.columns.find( s.column).value);
     }
     return x => {
         let r: Filter = undefined;
