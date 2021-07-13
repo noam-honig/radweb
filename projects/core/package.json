@@ -1,7 +1,7 @@
 {
   "name": "@remult/core",
   "schematics": "./schematics/collection.json",
-  "version": "2.2.14",
+  "version": "2.2.15",
   "description": "remult core lib",
   "license": "MIT",
   "author": {
