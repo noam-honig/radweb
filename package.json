@@ -8,6 +8,8 @@
     "test": "ng test core",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "release-core": "npm run core-build && npm run patch-core && npm run core-build && cd dist/core && npm publish  --access public --tag v2.5-lts",
+    "patch-core":"cd projects/core && npm version patch && cd..",
     "app-server-watch": "tsc -p tsconfig.server.json --watch",
     "build": "npm run core-build && npm run remult-angular-build && npm run server-postgres-build",
     "core-build": "tsc -p projects/core/tsconfig.json && copyfiles -u 2 projects/core/package.json dist/core",
