@@ -1172,6 +1172,18 @@ describe("test datetime column", () => {
     //expect(x.value.toDateString()).toBe(new Date('1976-06-16').toDateString());
     //  expect(x.dateValue.getHours()).toBe(0);
   });
+  it("date works2", () => {
+    var x = new DateColumn();
+
+    x.value = new Date('1976-6-16');
+    expect(x.rawValue).toBe('1976-06-16');
+  });
+  it("date works3", () => {
+    var x = new DateColumn();
+
+    x.value = new Date(1976,5,16);
+    expect(x.rawValue).toBe('1976-06-16');
+  });
   it("date Storage works 1", () => {
     var x = new DateTimeDateStorage();
 
@@ -1186,7 +1198,7 @@ describe("test datetime column", () => {
     //
 
   });
-  
+
 });
 describe("Test char date storage", () => {
   let x = new CharDateStorage();
@@ -1277,8 +1289,8 @@ describe("context", () => {
     expect(c.user.roles.length).toBe(0);
 
   });
-  it("circular reference entity works",()=>{
-    var c= new Context();
+  it("circular reference entity works", () => {
+    var c = new Context();
     var r = c.for(EntityA).create();
   });
 
